@@ -16,7 +16,8 @@ TetrAIs will be the ultimate competitor to even the most skilled players, testin
 With the AI always learning and getting better, we force the user to continuously improve if they want to keep up.
 
 ### Vision Statement
-TODO
+Here at TetrAIs we are commited to providing you with the most challenging Tetris opponent you have ever faced, a machine learning algorithm that evolves with every challenge it faces.
+TetrAIs is always getting better... Are you?
 
 ### Motivation
 We wanted to use this project as an oportunity to learn about machine learning and tensor-flow, and to create an awesome, fun game in the process.
