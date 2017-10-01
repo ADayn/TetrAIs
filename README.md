@@ -1,29 +1,40 @@
 # TetrAIs
 
+## CSCI 3308 course project
+
 ### Members
 Jake Liebow, Dingjun Weng, Albert Dayn
 
 ### Description
-We are going to make a website where users can play Tetris in their browsers. They will be able to view past high scores and save a username for that play to store past plays and display them on the leaderboard. We will use Tensor-flow to learn an AI to play Tetris at the same time as the user, so users can play against the AI in realtime. The value we provide is to provide ultimate competitive environment, so the AI always gets better, continuously forcing the user to get better if they want to keep up.
+We are going to make a website where users can play Tetris in their browsers.
+To provide a more authentic, retro experience, users will be asked for a name at the end of their play to put up on a global leaderboard.
+If time permits, we will add the ability to store speedruns of the game so players can see how others got to their high scores.
+For a more modern twist on this beloved game, we will use Tensor-flow to learn an AI to play Tetris at the same time as the user, so players can compete against a challenging AI in realtime.
+We call this Tetris-mastering algorithm: TetrAIs.
+It will play the same game as the player, with blocks falling at the same time for each oponent.
+TetrAIs will be the ultimate competitor to even the most skilled players, testing their resolve.
+With the AI always learning and getting better, we force the user to continuously improve if they want to keep up.
 
 ### Vision Statement
 TODO
 
 ### Motivation
-To learn about machine learning and tensor-flow, and to create an awesome game.
+We wanted to use this project as an oportunity to learn about machine learning and tensor-flow, and to create an awesome, fun game in the process.
 
 ### Risks
-AI might not work / Might take too long to learn the game.
-Lack of experience with Front end Dev and Machine learning
+As with any deep learning project, it may take too long to train a useable AI to solve the problem of playing Tetris.
+Our team has a lack of experience with both front end development and machine learning using neural nets.
 
 ### Risk Mitigation Plan
-We will start on the AI as soon as possible to reduce the risk of not having enough time for the algorithm to converge on an optimal solution and to maximize the time we have to get familiar with the problem.
+We will start on the AI as soon as possible to reduce the risk of not having enough time for the algorithm to converge on an optimal solution and to maximize the time we have to get familiar with the problem domain.
 
 ### VC
 Github
 
 ### Dev Methodology
-Agile
+We will be using the Agile methodology with 2 week long sprints.
+Since we won't be able to meet every day, we will be using Slack to post our status and ask any questions of each other in place of a daily Stand Up.
+We will meet once a week in person, with every other meeting being a Retrospective to decide how we can improve for the next sprint.
 
 ### Collaboration Tool
-Slack
+We have setup a Slack chanel for this project.
