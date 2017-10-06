@@ -39,3 +39,12 @@ We will meet once a week in person, with every other meeting being a Retrospecti
 
 ### Collaboration Tool
 We have setup a Slack chanel for this project.
+
+### Architecture
+
+We will be using Google's tensorflow neural network library to learn an AI to play tetris, which will be done using Python.
+MySQL will be used for the backend database to store high scores.
+We will use Elm as our front end language and Elm-UI as the front end framework.
+This will be the implementation language for our tetris game and the runner of the neural network sent from the server.
+For the server, we will use Python and the Flask framework.
+We will use it's built in development server as opposed to adding on a standalone application like Apache or NginX.
