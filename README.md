@@ -25,6 +25,7 @@ We wanted to use this project as an oportunity to learn about machine learning a
 ### Risks
 As with any deep learning project, it may take too long to train a useable AI to solve the problem of playing Tetris.
 Our team has a lack of experience with both front end development and machine learning using neural nets.
+We only have two people.
 
 ### Risk Mitigation Plan
 We will start on the AI as soon as possible to reduce the risk of not having enough time for the algorithm to converge on an optimal solution and to maximize the time we have to get familiar with the problem domain.
@@ -35,13 +36,12 @@ Github
 ### Dev Methodology
 We will be using the Agile methodology with 2 week long sprints.
 Since we won't be able to meet every day, we will be using Slack to post our status and ask any questions of each other in place of a daily Stand Up.
-We will meet once a week in person, with every other meeting being a Retrospective to decide how we can improve for the next sprint.
+We will meet once a week in person, with every 3rd meeting being a retrospective to decide how we can improve for the next sprint.
 
 ### Collaboration Tool
 We have setup a Slack chanel for this project.
 
 ### Architecture
-
 We will be using Google's tensorflow neural network library to learn an AI to play tetris, which will be done using Python.
 MySQL will be used for the backend database to store high scores.
 We will use Elm as our front end language and Elm-UI as the front end framework.
