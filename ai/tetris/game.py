@@ -59,19 +59,7 @@ class Game:
         self.gen_block()
 
     def __str__(self) -> str:
-        only_board = self.get_visible()
-        if self.block is None:
-            string = str_bool_ndarray(only_board)
-        else:
-            n, e, s, w = self.boarder
-            b = self.block
-            y = b.y - n
-            x = b.x - w
-            y1, y2 = y, y + b.height
-            x1, x2 = x, x + b.width
-            only_block = np.full((self.height, self.width), False, dtype=bool)
-            only_block[y1:y2, x1:x2] |= b.matrix()
-            string = str_bool_ndarray(only_block | only_board)
+        string = str_bool_ndarray(self.get_visible_with_falling_block())
 
         if self.game_over:
             string = "GAME OVER\n" + string + "\nSCORE: %d" % self.score
@@ -157,6 +145,21 @@ class Game:
     def get_visible(self) -> np.ndarray:
         n, e, s, w = self.boarder
         return np.atleast_2d(self.board[n:-s, w:-e])
+
+    def get_visible_with_falling_block(self) -> np.ndarray:
+        only_board = self.get_visible()
+        if self.block is None:
+            return only_board
+        else:
+            n, e, s, w = self.boarder
+            b = self.block
+            y = b.y - n
+            x = b.x - w
+            y1, y2 = y, y + b.height
+            x1, x2 = x, x + b.width
+            only_block = np.full((self.height, self.width), False, dtype=bool)
+            only_block[y1:y2, x1:x2] |= b.matrix()
+            return only_block | only_board
 
     def get_staging(self) -> np.ndarray:
         n, e, s, w = self.boarder
