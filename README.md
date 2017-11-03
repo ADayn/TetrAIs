@@ -48,3 +48,6 @@ We will use Elm as our front end language and Elm-UI as the front end framework.
 This will be the implementation language for our tetris game and the runner of the neural network sent from the server.
 For the server, we will use Python and the Flask framework.
 We will use it's built in development server as opposed to adding on a standalone application like Apache or NginX.
+
+### Database description
+Description: Our database for the A.I. powered gaming website is made up of two tables, 'users' and 'leaderboards'. The generic table 'users' which holds the player id(primary key, enforces uniqueness), username, hash encrypted password and high score of the player. The table 'leaderboards' tracks the top 10 high scores and their record holders, this table is made up of the rank(primary key enforces uniqueness), user_id ( foreign key to access specific player on leaderboards from users), leader_name, and the high score itself. 
