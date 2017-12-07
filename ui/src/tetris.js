@@ -15,22 +15,21 @@ function bmfp(num_rows, num_cols, points) {
 	const m = new Matrix(num_rows, num_cols, () => false);
 	points.forEach(point => {
 		m.set(point.row, point.col, true);
-	})
+	});
+	return m;
 }
 
 const simplest = new GameType(
 	[
 		new Shape(
-			[
-				// rot_0
-				bmfp(3, 3, [p(1, 0), p(1, 1), p(1, 2)]),
-				// rot_90
-				bmfp(3, 3, [p(0, 1), p(1, 1), p(2, 1)]),
-				// rot_180
-				bmfp(3, 3, [p(1, 0), p(1, 1), p(1, 2)]),
-				// rot_270
-				bmfp(3, 3, [p(0, 1), p(1, 1), p(2, 1)]),
-			]
+			// rot_0
+			bmfp(3, 3, [p(1, 0), p(1, 1), p(1, 2)]),
+			// rot_90
+			bmfp(3, 3, [p(0, 1), p(1, 1), p(2, 1)]),
+			// rot_180
+			bmfp(3, 3, [p(1, 0), p(1, 1), p(1, 2)]),
+			// rot_270
+			bmfp(3, 3, [p(0, 1), p(1, 1), p(2, 1)])
 		)
 	],
 	20,
@@ -39,11 +38,5 @@ const simplest = new GameType(
 
 // TODO
 // const tetris = ;
-
-var game = null;
-
-function new_game() {
-	game = new Game(simplest);
-}
 
 file_loaded("tetris");

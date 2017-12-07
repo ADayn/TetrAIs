@@ -1,5 +1,14 @@
 require("utils");
 
+function css_color(color) {
+	if (color === Colors.CLEAR) return "clear";
+	else if (color === Colors.BLACK) return "black";
+	else if (color === Colors.RED) return "red";
+	else if (color === Colors.YELLOW) return "yellow";
+	else if (color === Colors.GREEN) return "green";
+	else if (color === Colors.BLUE) return "blue";
+}
+
 const Colors = {
 	CLEAR: 0,
 	BLACK: 1,

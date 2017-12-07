@@ -1,0 +1,38 @@
+.clear {
+}
+
+.green {
+    background-color: green;
+}
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.cell {
+    height: 50px;
+    width: 50px;
+    border: 1px solid darkslategrey;
+}
+
+.row {
+    display: flex; /* or inline-flex */
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.board {
+    display: flex; /* or inline-flex */
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}

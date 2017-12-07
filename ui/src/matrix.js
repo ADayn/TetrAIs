@@ -41,8 +41,8 @@ class Matrix {
 		assert(row_begin <= row_end);
 		assert(col_begin <= col_end);
 		return new Matrix(
-			row_end - row_begin,
-			col_end - col_begin,
+			row_end - row_begin + 1,
+			col_end - col_begin + 1,
 			(row_idx, col_idx) =>
 				this.get(row_idx + row_begin, col_idx + col_begin)
 		)
@@ -86,8 +86,8 @@ class Matrix {
 		this.assert_in_bounds(row_idx_1, null);
 		this.assert_in_bounds(row_idx_2, null);
 		const copy = this.copy();
-		row_1 = copy.rows[row_idx_1];
-		row_2 = copy.rows[row_idx_2];
+		const row_1 = copy.rows[row_idx_1];
+		const row_2 = copy.rows[row_idx_2];
 		copy.rows[row_idx_1] = row_2;
 		copy.rows[row_idx_2] = row_1;
 		return copy;

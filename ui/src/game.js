@@ -23,19 +23,18 @@ class Game {
 		// Extra space needed on each side so a shape can be up against the wall
 		// without it's matrix (and thus, (x, y) location) passing out of bounds.
 		const side_extra = Math.max(shapes.map(shape => shape.width));
-		// 1 added to height for bottom boarder, so no pieces fall through
-		// Doesn't need to be more since block matrices can be out of bounds
-		// (because x, y start at upper left of block)
-		const bottom_extra = 1;
+		const bottom_extra = top_extra;
 		// Matrix of colors
+		const true_width = board_width + side_extra * 2;
+		const true_height = board_height + top_extra + bottom_extra;
 		const board = new Matrix(
-			board_height + top_extra + bottom_extra,
+			true_height,
 			// times 2 for 1 for each side
-			board_width + side_extra * 2,
+			true_width,
 			(row_idx, col_idx) =>
-				col_idx < side_extra                    || // left boarder
-				col_idx >= board_width - side_extra     || // right boarder
-				row_idx >= board_height - bottom_extra     // bottom boarder
+				col_idx < side_extra                  || // left boarder
+				col_idx >= true_width - side_extra    || // right boarder
+				row_idx >= true_height - bottom_extra    // bottom boarder
 					// Color boarders black, free space clear
 					? Colors.BLACK
 					: Colors.CLEAR
@@ -49,11 +48,11 @@ class Game {
 		// N, E, S, W
 		this.boarder = [top_extra, side_extra, bottom_extra, side_extra];
 		this.n_vis_bound = top_extra;
-		this.e_vis_bound = board_width - side_extra - 1;
-		this.s_vis_bound = board_height - bottom_extra - 1;
+		this.e_vis_bound = true_width - side_extra - 1;
+		this.s_vis_bound = true_height - bottom_extra - 1;
 		this.w_vis_bound = side_extra;
-		this.width = board_width;
-		this.height = board_height;
+		this.width = true_width;
+		this.height = true_height;
 		this.game_over = false;
 
 		this.gen_block();
@@ -66,7 +65,16 @@ class Game {
 	}
 
 	get_visible() {
-		return  this.board.slice(
+		return this.board.slice(
+			this.n_vis_bound,
+			this.w_vis_bound,
+			this.s_vis_bound,
+			this.e_vis_bound
+		)
+	}
+
+	get_visible_with_block() {
+		return this.board.replace(this.block.row_idx, this.block.col_idx, this.block.matrix()).slice(
 			this.n_vis_bound,
 			this.w_vis_bound,
 			this.s_vis_bound,
@@ -95,10 +103,10 @@ class Game {
 	 */
 	drop_rows() {
 		this.assert_game_running();
-		dropped = 0;
+		let dropped = 0;
 		let visible = this.get_visible();
 		let rows = visible.copy().rows;
-		for (let idx = rows.length - 1; idx >= 0; idx++) {
+		for (let idx = rows.length - 1; idx >= 0; idx--) {
 			let streak = 0;
 			while (idx - dropped >= 0 && all(rows[idx - dropped])) {
 				dropped += 1;
@@ -111,7 +119,7 @@ class Game {
 				visible = visible.swap(idx, idx + dropped);
 			}
 			if (streak) {
-				self.score += 10 * Math.pow(3, streak);
+				this.score += 10 * Math.pow(3, streak);
 			}
 		}
 		this.board = this.board.replace(this.n_vis_bound, this.w_vis_bound, visible)
@@ -119,15 +127,15 @@ class Game {
 
 	gen_block() {
 		this.assert_game_running();
-		if (this.block === null) {
+		if (this.block !== null) {
 			throw "Cannot generate two blocks before the last has been stamped";
 		}
 		const e = this.boarder[1];
 		const next_shape = pick_random(this.shapes);
 		const next_color = pick_random(valid_colors);
-		const init_x = e + idiv(this.width, 2) - idiv(next_shape.width, 2);
-		const init_y = 0;
-		this.block = new Block(next_shape, next_color, 0, init_x, init_y);
+		const init_row_idx = 0;
+		const init_col_idx = idiv(this.width, 2) - idiv(next_shape.width, 2);
+		this.block = new Block(next_shape, next_color, 0, init_row_idx, init_col_idx);
 	}
 
 	get_staging() {
@@ -141,15 +149,15 @@ class Game {
 
 	translate(new_block) {
 		this.assert_game_running();
-		const y1 = new_block.y;
-		const x1 = new_block.x;
-		const y2 = y1 + new_block.height - 1;
-		const x2 = x1 + new_block.width - 1;
-		const overlapping_new = this.board.slice(y1, x1, y2, x2);
-		assert(overlapping_new.cols === new_block.width);
-		assert(overlapping_new.rows === new_block.height);
+		const row_idx_1 = new_block.row_idx;
+		const col_idx_1 = new_block.col_idx;
+		const row_idx_2 = row_idx_1 + new_block.height - 1;
+		const col_idx_2 = col_idx_1 + new_block.width - 1;
+		const overlapping_new = this.board.slice(row_idx_1, col_idx_1, row_idx_2, col_idx_2);
+		assert(overlapping_new.num_cols === new_block.width);
+		assert(overlapping_new.num_rows === new_block.height);
 		if (!any(overlapping_new.and(new_block.matrix()))) {
-			self.block = new_block;
+			this.block = new_block;
 			return true;
 		}
 		else {
@@ -161,7 +169,7 @@ class Game {
 		if (!this.translate(this.block.down())) {
 			// Collision, need to stamp current block into board and generate new
             // one, or end game if stamped block enters staging area
-			this.board = this.board.replace(this.block.y, this.block.x, this.block.matrix())
+			this.board = this.board.replace(this.block.row_idx, this.block.col_idx, this.block.matrix());
 			this.block = null;
 			this.drop_rows();
 			if (any(this.get_staging())) {

@@ -1,8 +1,14 @@
+// WTF Javascript???
+function mod(numerator, denomenator) {
+	return ((numerator % denomenator) + denomenator) % denomenator;
+}
+
+
 // Correctness
 
 function assert(condition, message = "Assertion failed", objs = []) {
 	if (!condition) {
-		if (objs) console.error("Also logged with failed assertion: ", objs);
+		if (objs && objs != []) console.error("Also logged with failed assertion: ", objs);
 		throw message;
 	}
 }
@@ -47,10 +53,10 @@ function any(collection, to_bool = (x) => !!x) {
 	return collection.reduce((acc, x) => acc || to_bool(x), false);
 }
 
-function flatMap(xs, f) {
-	xs.reduce((acc, x) =>
-		acc.concat(f(x)), []);
-}
+// function flatMap(xs, f) {
+// 	return xs.reduce((acc, x) =>
+// 		acc.concat(f(x)), []);
+// }
 
 function pick_random(array) {
 	return array[Math.floor(Math.random() * array.length)];
@@ -60,5 +66,6 @@ function pick_random(array) {
 function idiv(numerator, denomenator) {
 	return Math.floor(numerator / denomenator);
 }
+
 
 file_loaded("utils");

@@ -3,12 +3,12 @@ require("shape");
 require("colors");
 
 class Block {
-	constructor(shape, color, rot = 0, x = 0, y = 0) {
+	constructor(shape, color, rot = 0, row_idx = 0, col_idx = 0) {
 		this.shape = shape;
 		this.color = color;
 		this.rot = rot;
-		this.x = x;
-		this.y = y;
+		this.row_idx = row_idx;
+		this.col_idx = col_idx;
 		this.width = shape.width;
 		this.height = shape.height;
 	}
@@ -23,40 +23,40 @@ class Block {
 			this.shape,
 			this.color,
 			mapper(this.rot),
-			this.x,
-			this.y
+			this.row_idx,
+			this.col_idx
 		)
 	}
 
 	map_loc(mapper) {
-		xy = mapper(this.x, this.y);
+		const rowcol = mapper(this.row_idx, this.col_idx);
 		return new Block(
 			this.shape,
 			this.color,
 			this.rot,
-			xy.first,
-			xy.second
+			rowcol.row,
+			rowcol.col
 		)
 	}
 
 	rot_cw() {
-		return this.map_rot(rot => (rot + 1) % 4);
+		return this.map_rot(rot => mod(rot + 1, 4));
 	}
 
 	rot_ccw() {
-		return this.map_rot(rot => (rot - 1) % 4);
+		return this.map_rot(rot => mod(rot - 1, 4));
 	}
 
 	down() {
-		this.map_loc((x, y) => new Pair(x, y + 1));
+		return this.map_loc((r, c) => new Pair(r + 1, c));
 	}
 
 	left() {
-		this.map_loc((x, y) => new Pair(x - 1, y));
+		return this.map_loc((r, c) => new Pair(r, c - 1));
 	}
 
 	right() {
-		this.map_loc((x, y) => new Pair(x + 1, y));
+		return this.map_loc((r, c) => new Pair(r, c + 1));
 	}
 }
 
