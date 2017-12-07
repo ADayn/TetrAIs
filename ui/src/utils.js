@@ -29,7 +29,14 @@ class Pair {
 	constructor(first, second) {
 		this.first = first;
 		this.second = second;
+		// To act as location
+		this.row = first;
+		this.col = second;
 	}
+}
+
+function p(fst, snd) {
+	return new Pair(fst, snd);
 }
 
 function all(collection, to_bool = (x) => !!x) {

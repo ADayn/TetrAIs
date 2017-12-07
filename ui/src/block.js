@@ -14,7 +14,8 @@ class Block {
 	}
 
 	matrix() {
-		return this.shape.rots[this.rot];
+		return this.shape.rots[this.rot].map(cell => cell ? this.color
+			                                              : Colors.CLEAR);
 	}
 
 	map_rot(mapper) {

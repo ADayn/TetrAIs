@@ -5,17 +5,10 @@ class Matrix {
 		assert(num_rows >= 0);
 		assert(num_cols >= 0);
 
-		function make_list() {
-			const l = [];
-			l.length = num_cols;
-			return l;
-		}
-		const rows = [];
-		rows.length = num_rows;
-		rows.map(_ => make_list);
+		const rows = Array(num_rows).fill(undefined).map(_ => Array(num_cols).fill(undefined));
 		this.rows = rows.map(
 			(row, row_idx) => row.map(
-				(col, col_idx) => filler(row_idx, col_idx)
+				(_, col_idx) => filler(row_idx, col_idx)
 			)
 		);
 		this.num_rows = num_rows;
@@ -30,7 +23,13 @@ class Matrix {
 	}
 
 	get(row_idx, col_idx) {
+		this.assert_in_bounds(row_idx, col_idx);
 		return this.rows[row_idx][col_idx]
+	}
+
+	set(row_idx, col_idx, cell) {
+		this.assert_in_bounds(row_idx, col_idx);
+		this.rows[row_idx][col_idx] = cell
 	}
 
 	/**

@@ -3,6 +3,7 @@ require("matrix");
 require("colors");
 require("shape");
 require("block");
+require("game_type");
 
 class Game {
 	constructor(type) {
