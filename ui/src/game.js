@@ -74,12 +74,15 @@ class Game {
 	}
 
 	get_visible_with_block() {
-		return this.board.replace(this.block.row_idx, this.block.col_idx, this.block.matrix()).slice(
+		const only_block =
+			(new Matrix(this.height, this.width, () => Colors.CLEAR))
+				.replace(this.block.row_idx, this.block.col_idx, this.block.matrix());
+		return this.board.or(only_block).slice(
 			this.n_vis_bound,
 			this.w_vis_bound,
 			this.s_vis_bound,
 			this.e_vis_bound
-		)
+		);
 	}
 
 	/**
@@ -116,12 +119,13 @@ class Game {
 				visible = visible.fill_row(idx, Colors.CLEAR);
 			}
 			else {
-				visible = visible.swap(idx, idx + dropped);
+				visible = visible.swap(idx, idx - dropped);
 			}
 			if (streak) {
 				this.score += 10 * Math.pow(3, streak);
 			}
 		}
+		// Refresh the viewable board
 		this.board = this.board.replace(this.n_vis_bound, this.w_vis_bound, visible)
 	}
 
@@ -168,8 +172,11 @@ class Game {
 	down() {
 		if (!this.translate(this.block.down())) {
 			// Collision, need to stamp current block into board and generate new
-            // one, or end game if stamped block enters staging area
-			this.board = this.board.replace(this.block.row_idx, this.block.col_idx, this.block.matrix());
+			// one, or end game if stamped block enters staging area
+			const only_block =
+				(new Matrix(this.height, this.width, () => Colors.CLEAR))
+					.replace(this.block.row_idx, this.block.col_idx, this.block.matrix());
+			this.board = this.board.or(only_block);
 			this.block = null;
 			this.drop_rows();
 			if (any(this.get_staging())) {
