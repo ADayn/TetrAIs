@@ -20,4 +20,4 @@ simple_shapes = [
 ]
 
 simplest = GameType(simple_shapes, 3, 3)
-classic = ... # TODO
+classic = ...  # TODO

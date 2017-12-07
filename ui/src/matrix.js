@@ -69,6 +69,19 @@ class Matrix {
 		copy.arr[row_idx_2] = row_1;
 		return copy;
 	}
+
+	or(other_matrix) {
+		return this.map(
+			(cell, row_idx, cell_idx) =>
+				cell || other_matrix.get(row_idx, cell_idx)
+		)
+	}
+
+	fill_row(row_idx, filler) {
+		return this.map((old, row_idx_this, _) =>
+			row_idx_this === row_idx ? filler
+				                    : old)
+	}
 }
 
 file_loaded("matrix");

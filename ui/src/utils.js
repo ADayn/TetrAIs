@@ -17,3 +17,10 @@ function file_loaded(file_name) {
 function id(x) {
 	return x;
 }
+
+class Pair {
+	constructor(first, second) {
+		this.first = first;
+		this.second = second;
+	}
+}
