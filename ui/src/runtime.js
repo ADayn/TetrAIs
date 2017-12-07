@@ -28,7 +28,7 @@ function game_to_html(game) {
 
 	else if (game.game_over) {
 		let game_over_msg = document.createElement("h1");
-		game_over_msg.innerHTML = "GAME OVER";
+		game_over_msg.innerHTML = "GAME OVER<br/>Score: " + game.score;
 		return game_over_msg;
 	}
 
