@@ -1,8 +1,11 @@
+require("utils");
 require("shape");
+require("colors");
 
 class Block {
-	constructor(shape, rot = 0, x = 0, y = 0) {
+	constructor(shape, color, rot = 0, x = 0, y = 0) {
 		this.shape = shape;
+		this.color = color;
 		this.rot = rot;
 		this.x = x;
 		this.y = y;
@@ -15,8 +18,9 @@ class Block {
 	}
 
 	map_rot(mapper) {
-		return Block(
+		return new Block(
 			this.shape,
+			this.color,
 			mapper(this.rot),
 			this.x,
 			this.y
@@ -25,8 +29,9 @@ class Block {
 
 	map_loc(mapper) {
 		xy = mapper(this.x, this.y);
-		return Block(
+		return new Block(
 			this.shape,
+			this.color,
 			this.rot,
 			xy.first,
 			xy.second
@@ -42,15 +47,15 @@ class Block {
 	}
 
 	down() {
-		this.map_loc((x, y) => Pair(x, y + 1));
+		this.map_loc((x, y) => new Pair(x, y + 1));
 	}
 
 	left() {
-		this.map_loc((x, y) => Pair(x - 1, y));
+		this.map_loc((x, y) => new Pair(x - 1, y));
 	}
 
 	right() {
-		this.map_loc((x, y) => Pair(x + 1, y));
+		this.map_loc((x, y) => new Pair(x + 1, y));
 	}
 }
 
