@@ -49,6 +49,19 @@ class Matrix {
 		)
 	}
 
+	in_bounds(row_idx, col_idx) {
+		return row_idx >= 0 && row_idx < this.num_rows && col_idx >= 0 && col_idx < this.num_cols;
+	}
+
+	replace(row_offset, col_offset, matrix) {
+		this.assert_in_bounds(row_offset, col_offset);
+		return this.map((cell, row_idx, col_idx) =>
+				matrix.in_bounds(row_idx - row_offset, col_idx - col_offset)
+					? matrix.get(row_idx - row_offset, col_idx - col_offset)
+					: cell
+		)
+	}
+
 	/**
 	 * Returns new matrix
 	 */
@@ -56,7 +69,7 @@ class Matrix {
 		return new Matrix(
 			this.num_rows,
 			this.num_cols,
-			(row_idx, col_idx) => mapper(this.get(), row_idx, col_idx)
+			(row_idx, col_idx) => mapper(this.get(row_idx, col_idx), row_idx, col_idx)
 		)
 	}
 
@@ -85,6 +98,32 @@ class Matrix {
 		return this.map(
 			(cell, row_idx, cell_idx) =>
 				cell || other_matrix.get(row_idx, cell_idx)
+		);
+	}
+
+	and(other_matrix) {
+		return this.map(
+			(cell, row_idx, cell_idx) =>
+				cell && other_matrix.get(row_idx, cell_idx)
+		);
+	}
+
+	reduce(f, init) {
+		let acc = init;
+		for (let r = 0; r < this.num_rows; r ++) {
+			for (let c = 0; c < this.num_cols; c++) {
+				acc = f(acc, this.rows[r][c]);
+			}
+		}
+		return acc;
+	}
+
+	fill_row(row_idx, fill) {
+		this.assert_in_bounds(row_idx, null);
+		return this.map(
+			(cell, row_idx_old, col_idx_old) =>
+				row_idx_old === row_idx ? fill
+					                    : cell
 		)
 	}
 }

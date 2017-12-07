@@ -9,4 +9,11 @@ const Colors = {
 	BLUE: 5
 };
 
+const valid_colors = [
+	Colors.RED,
+	Colors.YELLOW,
+	Colors.GREEN,
+	Colors.BLUE
+];
+
 file_loaded("colors");
