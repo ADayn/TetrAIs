@@ -8,9 +8,16 @@ require("game");
 require("tetris");
 
 let game = null;
+let timer = null;
 
 function new_game() {
 	game = new Game(simplest);
+}
+
+function update_game() {
+	let game_div = document.getElementById("player_board");
+	game_div.innerHTML = "";
+	game_div.appendChild(game_to_html(game));
 }
 
 function game_to_html(game) {
@@ -65,6 +72,9 @@ function checkKey(e) {
 	else if (e.keyCode === 40) {
 		// down arrow
 		game.down();
+		if (game.game_over && timer) {
+			clearInterval(timer);
+		}
 	}
 	else if (e.keyCode === 37) {
 		// left arrow
@@ -85,11 +95,17 @@ function checkKey(e) {
 	else if (e.keyCode === 83) {
 		// s
 		new_game();
+		console.log("sfsdfsdfsdHI\n\n\n\n\n");
+		timer = setInterval(() => {
+			console.log("HI\n\n\n\n\n");
+			if (game) {
+				game.down();
+				update_game();
+			}
+		}, 500);
 	}
 	// Update game
-	let game_div = document.getElementById("player_board");
-	game_div.innerHTML = "";
-	game_div.appendChild(game_to_html(game));
+	update_game();
 }
 
 document.onkeydown = checkKey;
