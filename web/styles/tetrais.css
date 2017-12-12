@@ -1,0 +1,56 @@
+.clear {
+}
+
+.green {
+    background-color: #2ECC40;
+}
+
+.red {
+    background-color: #FF4136;
+}
+
+.blue {
+    background-color: #0074D9;
+}
+
+.yellow {
+    background-color: #FFDC00;
+}
+
+.purple {
+    background-color: #B10DC9;
+}
+
+.orange {
+    background-color: #FF851B;
+}
+
+.cell {
+    height: 50px;
+    width: 50px;
+    margin: 3px;
+}
+
+.row {
+    display: flex; /* or inline-flex */
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.board {
+    display: flex; /* or inline-flex */
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: #222222;
+    width: 560px;
+    padding: 3px;
+}
+
+#tetris {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
