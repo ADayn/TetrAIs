@@ -125,6 +125,16 @@ class Matrix {
 					                    : cell
 		)
 	}
+
+	rot_cw() {
+		return new Matrix(
+			this.num_cols,
+			this.num_rows,
+			(row_idx, col_idx) => {
+				return this.get(this.num_rows - 1 - col_idx, row_idx)
+			}
+		)
+	}
 }
 
 file_loaded("matrix");
