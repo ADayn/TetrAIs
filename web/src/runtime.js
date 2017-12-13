@@ -23,9 +23,8 @@ function clear_timer(){
 function reset_timer() {
 	clear_timer();
 	timer = setInterval(() => {
-		console.log("Auto DOWN");
 		checkKey({keyCode: 40, auto: true});
-	}, 3000);
+	}, 500);
 }
 
 function update_game() {
@@ -87,7 +86,6 @@ function checkKey(e) {
 		// down arrow
 		game.down();
 		if (!e.auto) {
-			console.log("Manual DOWN");
 			if (game.game_over) {
 				clear_timer();
 			}
