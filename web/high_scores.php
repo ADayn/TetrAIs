@@ -15,9 +15,11 @@ function th($data) {
 
 <head>
     <title> TetrAIs high scores </title>
+    <link rel="stylesheet" href="styles/tetrais.css">
 </head>
 
 <body>
+<h1 class="title">TetrAIs</h1>
 <table>
     <tr>
         <?php
@@ -36,8 +38,8 @@ function th($data) {
     }
     ?>
 </table>
-<form enctype="multipart/form-data" action="tetris.html">
-    <input type="submit" value="Play Again">
+<form id="play_again_form" enctype="multipart/form-data" action="tetris.php">
+    <input id="play_again" type="submit" value="Play Again">
 </form>
 </body>
 </html>

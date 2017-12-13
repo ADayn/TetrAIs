@@ -1,5 +1,3 @@
-<html>
-<body>
 <?php
 $user=$_REQUEST["name"];
 $pass=$_REQUEST["pass"];
@@ -10,9 +8,9 @@ if ($conn->connect_error) {
 $qid="SELECT MAX(id) from users;";
 $result_set_id=@mysqli_query($conn, $qid);
 $id=mysqli_fetch_array($result_set_id,MYSQLI_NUM)[0] + 1;
-$query="INSERT INTO users VALUES (".$id.",'".$user."','".$pass."',0);";
+$query="INSERT INTO users VALUES (".$id.",'".$user."','".$pass."');";
 
 $result=mysqli_query($conn, $query);
+
+include "tetris.php"
 ?>
-</body>
-</html>

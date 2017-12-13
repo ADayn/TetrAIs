@@ -40,15 +40,12 @@ function game_to_html(game) {
 		return cell_div;
 	}
 
-	if (game === null) {
-		let start_msg = document.createElement("h1");
-		start_msg.innerHTML = "Press 's' to start";
-		return start_msg;
-	}
-
-	else if (game.game_over) {
-		let game_over_msg = document.createElement("h1");
-		game_over_msg.innerHTML = "GAME OVER<br/>Score: " + game.score;
+	if (game.game_over) {
+		let game_over_msg = document.createElement("div");
+		game_over_msg.innerHTML =
+			"        Score: " + game.score + "<br/>\n" +
+			"        <input type=\"text\" id=\"leader_name\" placeholder='Leaderboard Name'/>\n" +
+			"        <button id=\"submit_button\" onclick=\"submit_score();\">Submit</button>\n";
 		return game_over_msg;
 	}
 
@@ -75,52 +72,53 @@ function game_to_html(game) {
 
 function checkKey(e) {
 
-	console.log("KEYDOWN: ", e, window.event);
-
 	e = e || window.event;
 
-	if (e.keyCode === 38) {
-		// up arrow
-	}
-	else if (e.keyCode === 40) {
-		// down arrow
-		game.down();
-		if (!e.auto) {
-			if (game.game_over) {
+	if (game && !game.game_over) {
+		if (e.keyCode === 38) {
+			// up arrow
+		}
+		else if (e.keyCode === 40) {
+			// down arrow
+			game.down();
+			if (!e.auto) {
+				if (game.game_over) {
+					clear_timer();
+				}
+				else {
+					reset_timer();
+				}
+			} else if (game.game_over) {
 				clear_timer();
 			}
-			else {
-				reset_timer();
-			}
-		} else if (game.game_over) {
-			clear_timer();
 		}
+		else if (e.keyCode === 37) {
+			// left arrow
+			game.left();
+		}
+		else if (e.keyCode === 39) {
+			// right arrow
+			game.right();
+		}
+		else if (e.keyCode === 68) {
+			// d
+			game.rot_ccw();
+		}
+		else if (e.keyCode === 70) {
+			// f
+			game.rot_cw();
+		}
+		// Update game
+		update_game();
 	}
-	else if (e.keyCode === 37) {
-		// left arrow
-		game.left();
-	}
-	else if (e.keyCode === 39) {
-		// right arrow
-		game.right();
-	}
-	else if (e.keyCode === 68) {
-		// d
-		game.rot_ccw();
-	}
-	else if (e.keyCode === 70) {
-		// f
-		game.rot_cw();
-	}
-	else if (e.keyCode === 83) {
-		// s
-		new_game();
-		reset_timer();
-	}
-	// Update game
-	update_game();
 }
 
 document.onkeydown = checkKey;
+
+$(document).ready(() => {
+	new_game();
+	reset_timer();
+	update_game();
+});
 
 file_loaded("runtime");
