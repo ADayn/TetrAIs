@@ -43,9 +43,10 @@ function game_to_html(game) {
 	if (game.game_over) {
 		let game_over_msg = document.createElement("div");
 		game_over_msg.innerHTML =
-			"        Score: " + game.score + "<br/>\n" +
-			"        <input type=\"text\" id=\"leader_name\" placeholder='Leaderboard Name'/>\n" +
+			"        Score: <span style='float: right'>" + game.score + "</span><br/>\n" +
+			"        <input type=\"text\" placeholder='Leaderboard Name'/>\n" +
 			"        <button id=\"submit_button\" onclick=\"submit_score();\">Submit</button>\n";
+		game_over_msg.id = "game_over_msg";
 		return game_over_msg;
 	}
 

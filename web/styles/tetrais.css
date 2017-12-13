@@ -89,6 +89,9 @@ input {
     height: 30px;
     margin-top: 5px;
     margin-bottom: 5px;
+    border: 0;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 button,
@@ -99,6 +102,7 @@ input[type=submit] {
     color: inherit;
 }
 
+#game_over_msg,
 #sign_in,
 #register {
     width: 200px;
