@@ -14,7 +14,7 @@ function new_game() {
 	game = new Game(tetris);
 }
 
-function clear_timer(){
+function clear_timer() {
 	if (timer) {
 		clearInterval(timer);
 	}
@@ -44,7 +44,7 @@ function game_to_html(game) {
 		let game_over_msg = document.createElement("div");
 		game_over_msg.innerHTML =
 			"        Score: <span style='float: right'>" + game.score + "</span><br/>\n" +
-			"        <input type=\"text\" placeholder='Leaderboard Name'/>\n" +
+			"        <input id=\"leader_name\" type=\"text\" placeholder='Leaderboard Name'/>\n" +
 			"        <button id=\"submit_button\" onclick=\"submit_score();\">Submit</button>\n";
 		game_over_msg.id = "game_over_msg";
 		return game_over_msg;

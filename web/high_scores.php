@@ -19,7 +19,7 @@ function th($data) {
 </head>
 
 <body>
-<h1 class="title">TetrAIs</h1>
+<h1 class="title">Tetr<strike>AI</strike>s</h1>
 <table>
     <tr>
         <?php

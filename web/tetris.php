@@ -29,7 +29,7 @@
     </script>
 </head>
 <body>
-    <h1 class="title">TetrAIs</h1>
+    <h1 class="title">Tetr<strike>AI</strike>s</h1>
     <div id="tetris">
         <div id="ai_board"></div>
         <div id="player_board"></div>
