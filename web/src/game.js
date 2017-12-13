@@ -19,10 +19,10 @@ class Game {
 		});
 
 		// Extra space needed on top for placing the next falling shape out of view
-		const top_extra = Math.max(shapes.map(shape => shape.height));
+		const top_extra = max(shapes.map(shape => shape.height));
 		// Extra space needed on each side so a shape can be up against the wall
 		// without it's matrix (and thus, (x, y) location) passing out of bounds.
-		const side_extra = Math.max(shapes.map(shape => shape.width));
+		const side_extra = max(shapes.map(shape => shape.width));
 		const bottom_extra = top_extra;
 		// Matrix of colors
 		const true_width = board_width + side_extra * 2;

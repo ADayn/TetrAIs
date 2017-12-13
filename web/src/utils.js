@@ -3,12 +3,16 @@ function mod(numerator, denomenator) {
 	return ((numerator % denomenator) + denomenator) % denomenator;
 }
 
+function max(l) {
+	return Math.max(...l)
+}
+
 
 // Correctness
 
 function assert(condition, message = "Assertion failed", objs = []) {
 	if (!condition) {
-		if (objs && objs != []) console.error("Also logged with failed assertion: ", objs);
+		if (objs && objs !== []) console.error("Also logged with failed assertion: ", objs);
 		throw message;
 	}
 }

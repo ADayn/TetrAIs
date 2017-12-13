@@ -11,7 +11,21 @@ let game = null;
 let timer = null;
 
 function new_game() {
-	game = new Game(simplest);
+	game = new Game(tetris);
+}
+
+function clear_timer(){
+	if (timer) {
+		clearInterval(timer);
+	}
+}
+
+function reset_timer() {
+	clear_timer();
+	timer = setInterval(() => {
+		console.log("Auto DOWN");
+		checkKey({keyCode: 40, auto: true});
+	}, 3000);
 }
 
 function update_game() {
@@ -72,8 +86,16 @@ function checkKey(e) {
 	else if (e.keyCode === 40) {
 		// down arrow
 		game.down();
-		if (game.game_over && timer) {
-			clearInterval(timer);
+		if (!e.auto) {
+			console.log("Manual DOWN");
+			if (game.game_over) {
+				clear_timer();
+			}
+			else {
+				reset_timer();
+			}
+		} else if (game.game_over) {
+			clear_timer();
 		}
 	}
 	else if (e.keyCode === 37) {
@@ -95,14 +117,7 @@ function checkKey(e) {
 	else if (e.keyCode === 83) {
 		// s
 		new_game();
-		console.log("sfsdfsdfsdHI\n\n\n\n\n");
-		timer = setInterval(() => {
-			console.log("HI\n\n\n\n\n");
-			if (game) {
-				game.down();
-				update_game();
-			}
-		}, 500);
+		reset_timer();
 	}
 	// Update game
 	update_game();

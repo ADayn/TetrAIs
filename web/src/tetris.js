@@ -30,7 +30,26 @@ const simplest = new GameType(
 	10
 );
 
-// TODO
-// const tetris = ;
+const tetris =  new GameType(
+	[
+		// I
+		new Shape(bmfp(4, 4, [p(1, 0), p(1, 1), p(1, 2), p(1, 3)])),
+		// O
+		new Shape(bmfp(2, 2, [p(0, 0), p(0, 1), p(1, 0), p(1, 1)])),
+		// T
+		new Shape(bmfp(3, 3, [p(0, 0), p(0, 1), p(0, 2), p(1, 1)])),
+		// J
+		new Shape(bmfp(3, 3, [p(0, 0), p(0, 1), p(0, 2), p(1, 2)])),
+		// L
+		new Shape(bmfp(3, 3, [p(0, 0), p(0, 1), p(0, 2), p(1, 0)])),
+		// S
+		new Shape(bmfp(3, 3, [p(0, 1), p(0, 2), p(1, 0), p(1, 1)])),
+		// Z
+		new Shape(bmfp(3, 3, [p(0, 0), p(0, 1), p(1, 1), p(1, 2)])),
+
+	],
+	20,
+	10
+);
 
 file_loaded("tetris");
