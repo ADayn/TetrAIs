@@ -1,4 +1,9 @@
-require("utils");
+const utils = require("./utils");
+
+if (typeof assert === "undefined") {
+	var assert = utils.assert;
+	var id = utils.id;
+}
 
 class Matrix {
 	constructor(num_rows, num_cols, filler) {
@@ -137,4 +142,4 @@ class Matrix {
 	}
 }
 
-file_loaded("matrix");
+module.exports = Matrix;

@@ -5,6 +5,7 @@
     <title>TetrAIs</title>
     <link rel="stylesheet" href="styles/tetrais.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="src/test_stubs.js"></script>
     <script src="src/utils.js"></script>
     <script src="src/matrix.js"></script>
     <script src="src/colors.js"></script>

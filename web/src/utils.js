@@ -1,3 +1,4 @@
+
 // WTF Javascript???
 function mod(numerator, denomenator) {
 	return ((numerator % denomenator) + denomenator) % denomenator;
@@ -15,17 +16,6 @@ function assert(condition, message = "Assertion failed", objs = []) {
 		if (objs && objs !== []) console.error("Also logged with failed assertion: ", objs);
 		throw message;
 	}
-}
-
-imported = new Set();
-
-function require(file_name) {
-	if (!imported.has(file_name)) throw file_name + " must be loaded first";
-}
-
-function file_loaded(file_name) {
-	imported.add(file_name);
-	console.log("SCRIPT FILE LOADED: " + file_name);
 }
 
 
@@ -71,5 +61,7 @@ function idiv(numerator, denomenator) {
 	return Math.floor(numerator / denomenator);
 }
 
-
-file_loaded("utils");
+module.exports = {
+	assert: assert,
+	id: id
+};
