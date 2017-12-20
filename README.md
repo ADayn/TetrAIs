@@ -19,7 +19,8 @@ Jake Liebow, Dingjun Weng, Albert Dayn
 Just copy the entire web folder to a PHP compatible server directory, then access the app starting at index.php
 
 ### How to run tests:
-We use the Jest unit testing framework, so to run tests you will need to install Jest with 
+We use the Jest unit testing framework, so to run tests you will need to install Jest with npm.
+To do so, simply run `npm install`. To run the tests, run the command npm test within the /web directory.
 
 ### Description
 We are going to make a website where users can play Tetris in their browsers.
