@@ -5,6 +5,12 @@
 ### Members
 Jake Liebow, Dingjun Weng, Albert Dayn
 
+### Links
+Project Tracker: [Trello](https://trello.com/tetrais)
+Video: [YouTube](https://youtu.be/LINFuG2z6ns)
+Deployed App: [TetrAIs](https://d2zhqwfq4gptno.cloudfront.net/) (this isn't updated yet)
+Repo: [GitHub](https://github.com/AlbertDayn/TetrAIs)
+
 ### Repo structure:
 * /ai - Python files defining the AI and a python implementation of Tetris
 * /\*.old - original architecture attempt (Python with Flask, Elm)
