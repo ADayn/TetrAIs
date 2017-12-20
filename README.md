@@ -5,6 +5,22 @@
 ### Members
 Jake Liebow, Dingjun Weng, Albert Dayn
 
+### Repo structure:
+* /ai - Python files defining the AI and a python implementation of Tetris
+* /\*.old - original architecture attempt (Python with Flask, Elm)
+* /web - Current Source code / Tests / Database setup
+* /web/\*.php - Middleware
+* /web/src - Javascript sources
+* /web/tests - Javascript tests
+* /web/database	- database setup scripts
+* /web/styles - Frontend CSS
+
+### How to deploy:
+Just copy the entire web folder to a PHP compatible server directory, then access the app starting at index.php
+
+### How to run tests:
+We use the Jest unit testing framework, so to run tests you will need to install Jest with 
+
 ### Description
 We are going to make a website where users can play Tetris in their browsers.
 To provide a more authentic, retro experience, users will be asked for a name at the end of their play to put up on a global leaderboard.
